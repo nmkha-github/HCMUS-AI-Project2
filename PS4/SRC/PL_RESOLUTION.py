@@ -37,11 +37,17 @@ def PL_RESOLUTION(KB, alpha):
     clauses = KB + negative_clause(alpha)
     # Chứa các clauses mới được phát sinh
     new = []
+    # Độ dài của tất cả clauses bao gồm
+    # KB và phủ định câu alpha và các clauses mới phát sinh
+    # của vòng lặp trước
+    previous_length_clauses = 0
 
+    # Vòng lặp
     while True:
         resolvents = []
 
-        for i in range(len(clauses)):
+        # Xét từ vị trí các clauses mới được phát sinh trong lần lặp trước
+        for i in range(previous_length_clauses, len(clauses)):
             for j in range(len(clauses)):
                 new_clause = PL_RESOLVE(clauses[i], clauses[j])
                 if new_clause not in clauses:
@@ -67,4 +73,5 @@ def PL_RESOLUTION(KB, alpha):
             return False, output
 
         new = new + resolvents
+        previous_length_clauses = len(clauses)
         clauses = clauses + resolvents
