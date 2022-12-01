@@ -34,7 +34,7 @@ def PL_RESOLVE(clauseA, clauseB):
 def PL_RESOLUTION(KB, alpha):
     output = []
 
-    clauses = KB + [negative_clause(alpha)]
+    clauses = KB + negative_clause(alpha)
     # Chứa các clauses mới được phát sinh
     new = []
 
@@ -55,7 +55,7 @@ def PL_RESOLUTION(KB, alpha):
 
         # print("Loop")
         # print("clauses: ", clauses)
-        # print(filter_clauses)
+        # print(resolvents)
         output.append(resolvents)
 
         # Nếu chứa clause rỗng thì dừng thuật toán

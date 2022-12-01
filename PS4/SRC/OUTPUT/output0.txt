@@ -1,10 +1,25 @@
-2
+7
+-A OR D OR F
+C OR D OR F OR -I
+E OR F
+D OR F
+B OR -E OR -I
 -C
--B OR C
-2
--A OR C
-A OR -B
-1
-A OR -C
+C OR -E
+10
+B OR D OR F OR -I
+C OR D OR F
+B OR -E
+-A OR F
+C OR F OR -I
+-E OR -I
+F
+D OR F OR -I
+B OR F OR -I
+C OR F
+3
+B OR D OR F
+B OR F
+F OR -I
 0
 NO

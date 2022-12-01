@@ -20,9 +20,9 @@ def negative_clause(alpha):
     negative_alpha = []
     for literal in alpha:
         if len(literal) == 1:
-            negative_alpha.append('-' + literal)
+            negative_alpha.append(['-' + literal])
         else:
-            negative_alpha.append(literal[1:])
+            negative_alpha.append([literal[1:]])
 
     return negative_alpha
 
