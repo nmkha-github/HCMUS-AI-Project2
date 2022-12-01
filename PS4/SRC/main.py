@@ -5,7 +5,6 @@ from PL_RESOLUTION import PL_RESOLUTION
 
 
 def main():
-    print(remove_duplicate_element([[], [], []]))
     test_case = 0
     for inputFile in os.listdir('INPUT'):
         KB, alpha = read_input('INPUT/' + inputFile)
@@ -17,6 +16,7 @@ def main():
 
         write_output('OUTPUT/output' + str(test_case) +
                      '.txt', result, output)
+
         for new_clauses in output:
             print(len(new_clauses))
             for clause in new_clauses:

@@ -1,4 +1,4 @@
-from lib import negative_clause, remove_duplicate_element
+from lib import negative_clause, remove_duplicate_element_in_list
 
 
 def PL_RESOLVE(clauseA, clauseB):
@@ -24,7 +24,7 @@ def PL_RESOLVE(clauseA, clauseB):
     combined_clause.sort(key=lambda x: ord(
         x[0]) if len(x) == 1 else ord(x[1]) + 0.5)
     # Lọc các literal giống nhau
-    remove_duplicate_element(combined_clause)
+    remove_duplicate_element_in_list(combined_clause)
 
     return combined_clause
 
@@ -47,7 +47,7 @@ def PL_RESOLUTION(KB, alpha):
         filter_clauses = [
             clause for clause in resolvents if clause != [True]]
         # Lọc các clause giống nhau
-        remove_duplicate_element(filter_clauses)
+        remove_duplicate_element_in_list(filter_clauses)
 
         # print("Loop")
         # print("clauses: ", clauses)

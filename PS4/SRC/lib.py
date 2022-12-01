@@ -27,7 +27,7 @@ def negative_clause(alpha):
     return negative_alpha
 
 
-def remove_duplicate_element(list: list):
+def remove_duplicate_element_in_list(list: list):
     i = 0
     j = 0
 
