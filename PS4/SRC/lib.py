@@ -11,11 +11,12 @@ def read_input(inputFile):
     KB = []
     for _ in range(int(f.readline())):
         KB.append(read_clause(f))
+    f.close()
 
     return KB, alpha
 
 
-def negative_alpha(alpha):
+def negative_clause(alpha):
     negative_alpha = []
     for literal in alpha:
         if len(literal) == 1:
@@ -26,5 +27,31 @@ def negative_alpha(alpha):
     return negative_alpha
 
 
-def write_output(outputFile):
+def remove_duplicate_element(list: list):
+    i = 0
+    j = 0
+
+    while i < len(list):
+        j = i + 1
+        while j < len(list):
+            if list[i] == list[j]:
+                list.pop(j)
+                j -= 1
+            j += 1
+        i += 1
+
+    return list
+
+
+def write_output(outputFile, result, output):
     f = open(outputFile, "w")
+    for new_clauses in output:
+        f.write(str(len(new_clauses)) + "\n")
+        for clause in new_clauses:
+            if clause:
+                f.write(' OR '.join(clause) + "\n")
+            else:
+                f.write('{}' + "\n")
+
+    f.write("YES" if result else "NO")
+    f.close()
