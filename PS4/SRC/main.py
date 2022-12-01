@@ -1,4 +1,3 @@
-import sys
 import os
 from lib import *
 from PL_RESOLUTION import PL_RESOLUTION

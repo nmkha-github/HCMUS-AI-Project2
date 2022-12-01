@@ -13,7 +13,7 @@ def PL_RESOLVE(clauseA, clauseB):
                 literal_pair = [literalA, literalB]
                 literal_pairs_count += 1
 
-    # Trường hợp ko có literal đối ngẫu hoặc có hơn 2 literal trả về câu đúng
+    # Trường hợp ko có literal đối ngẫu hoặc có hơn 2 literal đối ngẫu trả về câu đúng
     if literal_pairs_count != 1:
         return [True]
 
@@ -21,8 +21,10 @@ def PL_RESOLVE(clauseA, clauseB):
     combined_clause = [literal for literal in clauseA if literal != literal_pair[0]
                        ] + [literal for literal in clauseB if literal != literal_pair[1]]
 
+    # Sắp xếp theo thứ tự chữ cái (A < -A)
     combined_clause.sort(key=lambda x: ord(
         x[0]) if len(x) == 1 else ord(x[1]) + 0.5)
+
     # Lọc các literal giống nhau
     remove_duplicate_element_in_list(combined_clause)
 
@@ -30,10 +32,12 @@ def PL_RESOLVE(clauseA, clauseB):
 
 
 def PL_RESOLUTION(KB, alpha):
-    clauses = KB + [negative_clause(alpha)]
-
-    new = []
     output = []
+
+    clauses = KB + [negative_clause(alpha)]
+    # Chứa các clauses mới được phát sinh
+    new = []
+
     while True:
         resolvents = []
 
@@ -44,22 +48,23 @@ def PL_RESOLUTION(KB, alpha):
                     resolvents.append(new_clause)
 
         # Lọc ra các clause khác true
-        filter_clauses = [
+        resolvents = [
             clause for clause in resolvents if clause != [True]]
         # Lọc các clause giống nhau
-        remove_duplicate_element_in_list(filter_clauses)
+        remove_duplicate_element_in_list(resolvents)
 
         # print("Loop")
         # print("clauses: ", clauses)
         # print(filter_clauses)
-        output.append(filter_clauses)
+        output.append(resolvents)
 
+        # Nếu chứa clause rỗng thì dừng thuật toán
         if [] in resolvents:
             return True, output
 
-        new = new + filter_clauses
-
-        if len(filter_clauses) == 0:
+        # Nếu không phát sinh các clauses mới thì dừng thuật toán
+        if len(resolvents) == 0:
             return False, output
 
-        clauses = clauses + filter_clauses
+        new = new + resolvents
+        clauses = clauses + resolvents
