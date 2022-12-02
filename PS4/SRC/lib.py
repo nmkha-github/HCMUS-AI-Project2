@@ -1,5 +1,14 @@
 def read_clause(f):
-    clause = f.readline().split(' OR ')
+    clause = f.readline()
+    while clause[0] == " ":
+        clause = clause[1:]
+    while clause[len(clause)-1] == " " or clause[len(clause)-1] == '\n':
+        clause = clause[:-1]
+    while clause.find('  ') > -1:
+        clause.replace("  ", " ")
+
+    clause = clause.split(' OR ')
+
     if clause[len(clause) - 1][len(clause[len(clause) - 1]) - 1] == '\n':
         clause[len(clause) - 1] = clause[len(clause) - 1][:-1]
     return clause
